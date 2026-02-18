@@ -1,6 +1,7 @@
 import random
 
 def choose_difficulty():
+    print("Macmillian game: ")
     print("Choose difficulty:")
     print("1. Easy (1-50, 10 attempts)")
     print("2. Medium (1-100, 7 attempts)")
@@ -15,7 +16,7 @@ def choose_difficulty():
     else:
         return 200, 5
 
-def play_game(max_number, max_attempts):
+def play_meme(max_number, max_attempts):
     secret = random.randint(1, max_number)
     attempts = 0
 
