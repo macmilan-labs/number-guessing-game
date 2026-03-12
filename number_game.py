@@ -1,5 +1,6 @@
 import random
 
+
 def choose_difficulty():
     print("Macmillian game: ")
     print("Choose difficulty:")
@@ -7,7 +8,7 @@ def choose_difficulty():
     print("2. Medium (1-100, 7 attempts)")
     print("3. Hard (1-200, 5 attempts)")
 
-    choice = input("enter 1, 2, or 3: ")
+    choice = input("Enter 1, 2, or 3: ")
 
     if choice == '1':
         return 50, 10
@@ -16,7 +17,12 @@ def choose_difficulty():
     else:
         return 200, 5
 
+<<<<<<< HEAD
 def play_meme(max_number, max_attempts):
+=======
+
+def play_game(max_number, max_attempts):
+>>>>>>> 126edf3 (Add score system and improve program structure)
     secret = random.randint(1, max_number)
     attempts = 0
 
@@ -25,17 +31,17 @@ def play_meme(max_number, max_attempts):
     while True:
         guess_input = input("Enter your guess: ")
 
+        # Input validation
         if not guess_input.isdigit():
             print("Please enter a valid number.")
             continue
 
         guess = int(guess_input)
-
         attempts += 1
 
         if attempts >= max_attempts:
             print("Game Over! The number was", secret)
-            break
+            return False
 
         if guess < secret:
             print("Too low!")
@@ -43,16 +49,32 @@ def play_meme(max_number, max_attempts):
             print("Too high!")
         else:
             print(f"Correct! You guessed in {attempts} attempts.")
-            break
+            return True
 
         print("Attempts left:", max_attempts - attempts)
 
+def main():
+    wins = 0
+    games_played = 0
 
-while True:
-    max_number, max_attepmts = choose_difficulty()
-    play_game(max_number, max_attepmts)
+    while True:
+        max_number, max_attempts = choose_difficulty()
 
-    again = input("Play again? (y/n): ")
-    if again.lower() != 'y':
-        print("Thanks for playing!")
-        break
+        result = play_game(max_number, max_attempts)
+
+        games_played += 1
+
+        if result:
+            wins += 1
+
+        print(f"Score: {wins}/{games_played}")
+
+        again = input("Play again? (y/n): ")
+
+        if again.lower() != 'y':
+            print("Thanks for playing!")
+            break
+
+
+if __name__ == "__main__":
+    main()
